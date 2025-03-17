@@ -24,15 +24,16 @@ const HomePage = () => {
     }
 
     if (isSuccess) {
+        console.log(pastries)
         if (isSuccess) content =
             <>
                 <Row>{
                     pastries.map((pastry) => (
                         <Col key={pastry.id} xs={12} md={6} lg={4}>
-                            <Card className="m-3 d-flex flex-column align-items-center">
+                            <Card className="my-3 d-flex flex-column align-items-center">
                                 <Card.Img variant="top" src="https://placehold.co/600x400" />
                                 <Card.Body>
-                                    <Card.Title>{pastry.name}</Card.Title>
+                                    <Card.Title>{pastry.name} : {pastry.quantity}</Card.Title>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -53,9 +54,7 @@ const HomePage = () => {
                         <Card.Text>
                             Lots restants :
                         </Card.Text>
-                        <Card.Text>
-                            {content}
-                        </Card.Text>
+                        {content}
                     </Card.Body>
                 </Card>
             </Container>
