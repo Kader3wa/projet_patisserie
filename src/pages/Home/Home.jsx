@@ -3,6 +3,7 @@ import { Card } from "react-bootstrap";
 import { useGetPastriesQuery } from "../../store/slice/apiGameSlice";
 import LoaderComponent from "../../components/Loader/Loader";
 import ErrorComponent from "../../components/Error/Error";
+import { useNavigate } from "react-router";
 
 const HomePage = () => {
 
@@ -11,9 +12,10 @@ const HomePage = () => {
         isLoading,
         isSuccess,
         isError,
-        error,
-        refetch
+        error
     } = useGetPastriesQuery()
+
+    const navigate = useNavigate();
 
     let content;
 
@@ -44,6 +46,10 @@ const HomePage = () => {
             </>
     }
 
+    const handlePlayGame = () => {
+        navigate('/game')
+    }
+
     return (
         <>
             <Container>
@@ -52,7 +58,7 @@ const HomePage = () => {
                         <Card.Title>
                             Jouez à notre jeux Yam's pour tenter de remporter des lots
                         </Card.Title>
-                        <Button variant="primary" className="my-3">Jouer</Button>
+                        <Button variant="primary" className="my-3" onClick={handlePlayGame}>Jouer</Button>
                         <Card.Text>
                             Lots restants :
                         </Card.Text>
