@@ -1,8 +1,12 @@
+import { Container } from "react-bootstrap";
+
 const GamePage = () => {
     return (
-        <div>
-            <h1>Game Page</h1>
-        </div>
+        <>
+            <Container>
+                <h1>Game Page</h1>
+            </Container>
+        </>
     );
 }
 

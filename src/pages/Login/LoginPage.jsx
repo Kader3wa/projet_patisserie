@@ -1,8 +1,12 @@
+import { Container } from "react-bootstrap";
+
 const LoginPage = () => {
     return (
-        <div>
-            <h1>Login</h1>
-        </div>
+        <>
+            <Container>
+                <h1>Login</h1>
+            </Container>
+        </>
     );
 };
 
