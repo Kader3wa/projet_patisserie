@@ -5,21 +5,13 @@ const initialState = {
     isSuccess: false,
     isError: false,
     error: null,
-    pastries: [],
-    countLance: 0,
-    countLanceMax: 3,
 }
 
 const gameSlice = createSlice({
     name: 'game',
     initialState,
     reducers: {
-        lanceDes: (state) => {
-            state.countRoll++
-        },
-        resetLance: (state) => {
-            state.countRoll = 0
-        },
+        
     }
 })
 
