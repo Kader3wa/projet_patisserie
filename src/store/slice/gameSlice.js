@@ -1,18 +1,27 @@
-/**
- * organiser un jeu en ligne sur son site afin de faire gagner des pâtisseries !
+import { createSlice } from "@reduxjs/toolkit"
 
-Le principe est simple, les clients peuvent lancer 5 dés 3 fois, 
-si sur un de ces lancers, ils obtiennent un brelan ou un carré alors ils gagnent 1 ou 2 pâtisseries. 
-
-Vous intégrez l'équipe en tant que développeur front-end. 
-Le développeur back-end a terminé de créer l'API et vous a mis à disposition une documentation afin que vous puissiez l'utiliser.
- */
-
-// variable en fra,çais
 const initialState = {
     isLoading: false,
     isSuccess: false,
     isError: false,
     error: null,
-    pastries: []
+    pastries: [],
+    countLance: 0,
+    countLanceMax: 3,
 }
+
+const gameSlice = createSlice({
+    name: 'game',
+    initialState,
+    reducers: {
+        lanceDes: (state) => {
+            state.countRoll++
+        },
+        resetLance: (state) => {
+            state.countRoll = 0
+        },
+    }
+})
+
+export const { lanceDes, resetLance } = gameSlice.actions
+export default gameSlice.reducer
