@@ -1,6 +1,8 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { useGetPastriesQuery } from "../../store/slice/apiGameSlice";
+import LoaderComponent from "../../components/Loader/Loader";
+import ErrorComponent from "../../components/Error/Error";
 
 const HomePage = () => {
 
@@ -16,11 +18,11 @@ const HomePage = () => {
     let content;
 
     if (isLoading) {
-        return <div>Loading...</div>
+        return <LoaderComponent />
     }
 
     if (isError) {
-        return <div>Error: {error}</div>
+        return <ErrorComponent error={error} />
     }
 
     if (isSuccess) {
