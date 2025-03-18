@@ -29,7 +29,7 @@ const HomePage = () => {
 
     if (isSuccess) {
         console.log(pastries)
-        if (isSuccess) content =
+        content =
             <>
                 <Row>{
                     pastries.map((pastry) => (

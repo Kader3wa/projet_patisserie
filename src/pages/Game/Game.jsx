@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Card, Spinner, Alert, Container, Row, Col } from 'react-bootstrap';
 import { lancerDes } from '../../store/slice/gameSlice';
 import { selectDes, selectError, selectIsError, selectIsLoading, selectLancersRestants, selectPatisseriesGagnees } from '../../store/selector/gameSelector';
-import { useGetPastriesQuery } from '../../store/slice/apiGameSlice';
 
 const GamePage = () => {
     const dispatch = useDispatch();
