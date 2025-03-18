@@ -35,8 +35,8 @@ const GamePage = () => {
                                 <p>Vous avez 3 lancés.</p>
                                 <p>Si vous obtenez une paire (2 dés identiques) vous gagnez une patisserie.</p>
                                 <p>Avec un brelan (3 dés identiques) c'est deux patisseries.</p>
-                                <p>Et an cas de carré (4 dés identiques) vous remportez 3 patisseries.</p>
-                                <p>Accumulez les délices pur remporter la partie !</p>
+                                <p>Et en cas de carré (4 dés identiques) vous remportez 3 patisseries.</p>
+                                <p>Accumulez les délices pour remporter la partie !</p>
                             </Col>
                         </Row>
 
