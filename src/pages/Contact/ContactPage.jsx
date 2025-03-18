@@ -1,11 +1,17 @@
-import { Container } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 
 const ContactPage = () => {
     return (
         <>
-            <Container>
-                <h1>Contact</h1>
-                <p>Vous pouvez nous contacter par mail à l'adresse suivante</p>
+            <Container className="my-5">
+                <Card className="shadow">
+                    <Card.Body className="text-center">
+                        <Card.Title >
+                            <h1>Contact</h1>
+                        </Card.Title>
+                        <p>Vous pouvez me contacter à l'adresse suivante patisserie@mail.fr</p>
+                    </Card.Body>
+                </Card>
             </Container>
         </>
     );

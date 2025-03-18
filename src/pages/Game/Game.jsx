@@ -23,8 +23,8 @@ const GamePage = () => {
 
     return (
         <>
-            <Container>
-                <Card>
+            <Container className="my-5">
+                <Card className="shadow">
                     <Card.Body>
                         <Card.Title className="text-center">
                             <h1>Jeu du Yam's</h1>
@@ -43,7 +43,7 @@ const GamePage = () => {
                         <Row className="mt-4 justify-content-center">
                             {des.map((valeur, index) => (
                                 <Col key={index} xs={2}>
-                                    <Card key={index} className="d-flex justify-content-center align-items-center p-3 border-0">
+                                    <Card key={index} className="d-flex justify-content-center align-items-center border-0">
                                         <img
                                             src={imagesDes[valeur]}
                                             alt={`Dé ${valeur}`}

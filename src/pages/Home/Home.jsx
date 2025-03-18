@@ -34,7 +34,7 @@ const HomePage = () => {
                 <Row>{
                     pastries.map((pastry) => (
                         <Col key={pastry.id} xs={12} md={6} lg={4}>
-                            <Card className="my-3 d-flex flex-column align-items-center">
+                            <Card className="my-3 d-flex flex-column align-items-center shadow">
                                 <Card.Img variant="top" src="https://placehold.co/600x400" />
                                 <Card.Body>
                                     <Card.Title>{pastry.name} : {pastry.quantity}</Card.Title>
@@ -52,8 +52,8 @@ const HomePage = () => {
 
     return (
         <>
-            <Container>
-                <Card>
+            <Container className="my-5">
+                <Card className="shadow">
                     <Card.Body className="text-center">
                         <Card.Title>
                             Jouez à notre jeux Yam's pour tenter de remporter des lots

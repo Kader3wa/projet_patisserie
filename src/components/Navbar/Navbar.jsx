@@ -2,12 +2,12 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 
 const NavbarComponent = () => {
     return (
-        <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="mb-5">
+        <Navbar expand="lg" className="mb-5 bg-1">
             <Container>
-                <Navbar.Brand href="/">Patisserie 3WA</Navbar.Brand>
                 <Navbar.Toggle aria-controls="main-navbar" />
-                <Navbar.Collapse id="main-navbar">
-                    <Nav className="me-auto">
+                <Navbar.Collapse id="main-navbar" className="flex-column justify-content-center">
+                    <h1 className="text-white">La patisserie 3WA</h1>
+                    <Nav>
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/login">Login</Nav.Link>
                         <Nav.Link href="/contact">Contact</Nav.Link>
