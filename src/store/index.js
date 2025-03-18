@@ -5,13 +5,11 @@ import gameSlice from "./slice/gameSlice.js";
 const store = configureStore({
     reducer: {
         [apiGameSlice.reducerPath]: apiGameSlice.reducer,
-        game: gameSlice.reducer
+        game: gameSlice
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware()
-            .concat([
-                apiGameSlice.middleware
-            ])
+            .concat([apiGameSlice.middleware])
 })
 
 export default store
