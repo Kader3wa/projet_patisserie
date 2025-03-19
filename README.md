@@ -1,8 +1,33 @@
-# React + Vite
+# Projet patisserie 3WA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+La pâtisserie 3WA souhaiterait mettre en place une opération marketing: organiser un jeu en ligne sur son site afin de faire gagner des pâtisseries !
 
-Currently, two official plugins are available:
+Le principe est simple, les clients peuvent lancer 5 dés 3 fois, si sur un de ces lancers, ils obtiennent un brelan ou un carré alors ils gagnent 1 ou 2 pâtisseries. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Vous intégrez l'équipe en tant que développeur front-end. Le développeur back-end a terminé de créer l'API et vous a mis à disposition une documentation afin que vous puissiez l'utiliser.
+ 
+
+Spécifications techniques
+L'application sera faite sur React et le store sera géré avec Redux Toolkit. 
+
+Les appels API se feront avec RTK Query.
+
+Le style CSS sera géré avec sass (rappel: la connaissance du préprocesseur est demandé pour votre titre RNCP).
+
+## Fonctionnalités
+- Lancer les dés
+- Afficher les dés
+- Afficher le résultat
+- Afficher le nombre de pâtisseries gagnées
+- Afficher le nombre de lancers restants
+- Afficher le bouton pour relancer les dés
+- Afficher le bouton pour rejouer
+
+## API
+L'API est disponible à l'adresse suivante: http//localhost:3001
+
+## Lancez le projet
+- Cloner le projet
+- Installer les dépendances: `npm install`
+- Lancer le projet: `npm start`
