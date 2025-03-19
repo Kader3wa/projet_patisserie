@@ -6,6 +6,7 @@ import ErrorPage from '../pages/Error/Error';
 import ContactPage from '../pages/Contact/ContactPage';
 import GamePage from '../pages/Game/Game';
 import NavbarComponent from '../components/Navbar/Navbar';
+import AdminDashboardPage from '../pages/Admin/DashboardPage';
 
 const Router = () => {
     return (
@@ -15,6 +16,7 @@ const Router = () => {
                 <Routes>
                     <Route path="/" element={<HomePage />}></Route>
                     <Route path="/login" element={<LoginPage />} />
+                    <Route path="/admin" element={<AdminDashboardPage />} />
                     <Route path="/game" element={<GamePage />} />
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="*" element={<ErrorPage />} />

@@ -9,7 +9,7 @@ const ContactPage = () => {
                         <Card.Title >
                             <h1>Contact</h1>
                         </Card.Title>
-                        <p>Vous pouvez me contacter à l'adresse suivante patisserie@mail.fr</p>
+                        <p>Vous pouvez nous contacter sur patisserie3wa@mail.fr</p>
                     </Card.Body>
                 </Card>
             </Container>

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Card, Spinner, Alert, Container, Row, Col } from 'react-bootstrap';
 import { lancerDes } from '../../store/slice/gameSlice';
 import { selectDes, selectError, selectIsError, selectIsLoading, selectLancersRestants, selectPatisseriesGagnees } from '../../store/selector/gameSelector';
-import { useGetPastriesQuery, useWinPastriesQuery } from '../../store/slice/apiGameSlice';
+import { useWinPastriesQuery } from '../../store/slice/apiGameSlice';
 import { useEffect, useState } from 'react';
 import LoaderComponent from '../../components/Loader/Loader';
 import ErrorComponent from '../../components/Error/Error';
