@@ -33,6 +33,7 @@ const HomePage = () => {
             <>
                 <Row>{
                     pastries.map((pastry) => (
+                        (pastry.quantity > 0) &&
                         <Col key={pastry.id} xs={12} md={6} lg={4}>
                             <Card className="my-3 d-flex flex-column align-items-center shadow">
                                 <Card.Img variant="top" src="https://placehold.co/600x400" />
@@ -56,7 +57,7 @@ const HomePage = () => {
                 <Card className="shadow">
                     <Card.Body className="text-center">
                         <Card.Title>
-                            Jouez à notre jeux Yam's pour tenter de remporter des lots
+                            <h1>Jouez à notre jeux Yam's pour tenter de remporter des lots</h1>
                         </Card.Title>
                         <Button variant="primary" className="my-3" onClick={handlePlayGame}>Jouer</Button>
                         <Card.Text>

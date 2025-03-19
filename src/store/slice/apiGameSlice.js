@@ -4,11 +4,15 @@ export const apiGameSlice = createApi({
     reducerPath: "apiGame",
     tagTypes: ["Game"],
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:3001/game/pastries"
+        baseUrl: "http://localhost:3001/game/"
     }),
     endpoints: (build) => ({
         getPastries: build.query({
-            query: () => "/",
+            query: () => "/pastries",
+            providesTags: ["Game"],
+        }),
+        winPastries: build.query({
+            query: (quantity) => `/win-pastries/${quantity}`,
             providesTags: ["Game"],
         }),
     }),
@@ -16,4 +20,5 @@ export const apiGameSlice = createApi({
 
 export const {
     useGetPastriesQuery,
+    useWinPastriesQuery
 } = apiGameSlice

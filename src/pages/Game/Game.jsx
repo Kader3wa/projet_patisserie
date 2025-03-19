@@ -2,6 +2,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Card, Spinner, Alert, Container, Row, Col } from 'react-bootstrap';
 import { lancerDes } from '../../store/slice/gameSlice';
 import { selectDes, selectError, selectIsError, selectIsLoading, selectLancersRestants, selectPatisseriesGagnees } from '../../store/selector/gameSelector';
+import { useGetPastriesQuery, useWinPastriesQuery } from '../../store/slice/apiGameSlice';
+import { useEffect, useState } from 'react';
+import LoaderComponent from '../../components/Loader/Loader';
+import ErrorComponent from '../../components/Error/Error';
 
 const GamePage = () => {
     const dispatch = useDispatch();
@@ -11,6 +15,7 @@ const GamePage = () => {
     const isLoading = useSelector(selectIsLoading);
     const isError = useSelector(selectIsError);
     const error = useSelector(selectError);
+    const [triggerWin, setTriggerWin] = useState(false);
 
     const imagesDes = {
         1: '/images/1.png',
@@ -20,6 +25,51 @@ const GamePage = () => {
         5: '/images/5.png',
         6: '/images/6.png',
     };
+
+    const { data: patisseries, isFetching } = useWinPastriesQuery(
+        triggerWin && patisseriesGagnees > 0 ? patisseriesGagnees : undefined,
+        { skip: !triggerWin || patisseriesGagnees === 0 }
+    );
+
+    useEffect(() => {
+        if (lancersRestants === 0) {
+            setTriggerWin(true);
+        }
+    }, [lancersRestants]);
+
+    let content;
+
+    if (isLoading) {
+        return <LoaderComponent />
+    }
+
+    if (isError) {
+        return <ErrorComponent error={error} />
+    }
+
+    if (triggerWin) {
+        if (patisseries) {
+            content = (
+                <>
+                    <Alert variant="success" className="text-center">
+                        <p>Bravo</p>
+                        <p>Vous avez gagné !</p>
+                        <ul className="list-unstyled">
+                            {patisseries.map((pastry) => (
+                                <li key={pastry.id}>{pastry.name}</li>
+                            ))}
+                        </ul>
+                    </Alert>
+                </>
+            );
+        }
+    } else {
+        content = (
+            <Alert variant="danger" className="text-center">
+                <p>Perdu</p>
+            </Alert>
+        );
+    }
 
     return (
         <>
@@ -40,7 +90,7 @@ const GamePage = () => {
                             </Col>
                         </Row>
 
-                        <Row className="mt-4 justify-content-center">
+                        <Row className="my-3 justify-content-center">
                             {des.map((valeur, index) => (
                                 <Col key={index} xs={2}>
                                     <Card key={index} className="d-flex justify-content-center align-items-center border-0">
@@ -54,7 +104,7 @@ const GamePage = () => {
                             ))}
                         </Row>
 
-                        <Row className="mt-4">
+                        <Row className="my-3">
                             <Col className="d-flex justify-content-center">
                                 <Button
                                     variant="primary"
@@ -67,13 +117,13 @@ const GamePage = () => {
                             </Col>
                         </Row>
 
-                        {isError && <Alert variant="danger" className="mt-3">{error}</Alert>}
-
-                        <Row className="mt-4">
-                            <Col className="d-flex justify-content-center">
-                                <h4>Pâtisseries gagnées : {patisseriesGagnees}</h4>
-                            </Col>
-                        </Row>
+                        {triggerWin &&
+                            <Row className="my-3">
+                                <Col className="d-flex justify-content-center">
+                                    {content}
+                                </Col>
+                            </Row>
+                        }
                     </Card.Body>
                 </Card>
             </Container >
