@@ -15,15 +15,6 @@ Les appels API se feront avec RTK Query.
 
 Le style CSS sera géré avec sass (rappel: la connaissance du préprocesseur est demandé pour votre titre RNCP).
 
-## Fonctionnalités
-- Lancer les dés
-- Afficher les dés
-- Afficher le résultat
-- Afficher le nombre de pâtisseries gagnées
-- Afficher le nombre de lancers restants
-- Afficher le bouton pour relancer les dés
-- Afficher le bouton pour rejouer
-
 ## API
 L'API est disponible à l'adresse suivante: http//localhost:3001
 

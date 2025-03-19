@@ -1,9 +1,16 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { useMeQuery } from "../../store/slice/apiUserSlice";
+import { useLogoutMutation } from "../../store/slice/apiUserSlice";
 
 const NavbarComponent = () => {
 
     const { data: user } = useMeQuery();
+    const [logout] = useLogoutMutation();
+
+    const handleLogout = async () => {
+        await logout();
+        window.location.reload();
+    };
 
     return (
         <Navbar expand="lg" className="mb-5 bg-1">
@@ -18,7 +25,7 @@ const NavbarComponent = () => {
                                 <Nav.Link href="/admin">
                                     Admin
                                 </Nav.Link>
-                                <Nav.Link>
+                                <Nav.Link onClick={handleLogout}>
                                     Logout
                                 </Nav.Link>
                             </>

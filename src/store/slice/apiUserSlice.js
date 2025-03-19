@@ -19,8 +19,15 @@ export const apiUserSlice = createApi({
         me: build.query({
             query: () => "/me",
             providesTags: ["User"],
-        })
+        }),
+        logout: build.mutation({
+            query: () => ({
+                url: "/logout",
+                method: "GET",
+            }),
+            invalidatesTags: ["User"],
+        }),
     }),
 });
 
-export const { useLoginMutation, useMeQuery } = apiUserSlice;
+export const { useLoginMutation, useMeQuery, useLogoutMutation } = apiUserSlice;
