@@ -11,8 +11,8 @@ import AdminDashboardPage from '../pages/Admin/DashboardPage';
 const Router = () => {
     return (
         <>
-            <NavbarComponent />
             <BrowserRouter>
+                <NavbarComponent />
                 <Routes>
                     <Route path="/" element={<HomePage />}></Route>
                     <Route path="/login" element={<LoginPage />} />

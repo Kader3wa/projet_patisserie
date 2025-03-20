@@ -9,7 +9,7 @@ const NavbarComponent = () => {
 
     const handleLogout = async () => {
         await logout();
-        window.location.reload();
+        window.location.replace("/login")
     };
 
     return (
