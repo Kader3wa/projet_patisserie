@@ -7,7 +7,6 @@ const AdminDashboardPage = () => {
 
     const { data: pastries, isLoading, isError, error } = useGetAllPastriesQuery();
 
-
     if (isLoading) {
         return <LoaderComponent />
     }
@@ -33,8 +32,8 @@ const AdminDashboardPage = () => {
                     </Row>
                     <Row>
                         <Col md={12}>
-                            <Table>
-                                <thead>
+                            <Table hover>
+                                <thead className="text-center">
                                     <tr>
                                         <th>Image</th>
                                         <th>Nom</th>

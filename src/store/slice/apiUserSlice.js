@@ -7,8 +7,8 @@ export const apiUserSlice = createApi({
         credentials: "include",
     }),
     tagTypes: ["User"],
-    endpoints: (build) => ({
-        login: build.mutation({
+    endpoints: (builder) => ({
+        login: builder.mutation({
             query: (credentials) => ({
                 url: "/login",
                 method: "POST",
@@ -16,11 +16,11 @@ export const apiUserSlice = createApi({
             }),
             invalidatesTags: ["User"],
         }),
-        me: build.query({
+        me: builder.query({
             query: () => "/me",
             providesTags: ["User"],
         }),
-        logout: build.mutation({
+        logout: builder.mutation({
             query: () => ({
                 url: "/logout",
                 method: "GET",

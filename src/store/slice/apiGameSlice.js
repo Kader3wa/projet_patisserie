@@ -6,12 +6,12 @@ export const apiGameSlice = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: "http://localhost:3001/game/"
     }),
-    endpoints: (build) => ({
-        getPastries: build.query({
+    endpoints: (builder) => ({
+        getPastries: builder.query({
             query: () => "/pastries",
             providesTags: ["Game"],
         }),
-        winPastries: build.query({
+        winPastries: builder.query({
             query: (quantity) => `/win-pastries/${quantity}`,
             providesTags: ["Game"],
         }),
