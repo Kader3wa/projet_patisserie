@@ -26,7 +26,7 @@ const GamePage = () => {
         6: '/images/6.png',
     };
 
-    const { data: patisseries, isFetching } = useWinPastriesQuery(
+    const { data: patisseries } = useWinPastriesQuery(
         triggerWin && patisseriesGagnees > 0 ? patisseriesGagnees : undefined,
         { skip: !triggerWin || patisseriesGagnees === 0 }
     );
@@ -49,6 +49,7 @@ const GamePage = () => {
 
     if (triggerWin) {
         if (patisseries) {
+            console.log(patisseries);
             content = (
                 <>
                     <Alert variant="success" className="text-center">
