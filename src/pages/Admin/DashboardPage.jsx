@@ -4,6 +4,7 @@ import ErrorComponent from "../../components/Error/Error";
 import { useDeletePastrieMutation, useGetAllPastriesQuery } from "../../store/slice/apiCrudSlice";
 import { useState } from "react";
 import AddForm from "../../components/Pastry/AddForm";
+import "./Dashboard.scss";
 
 const AdminDashboardPage = () => {
 
