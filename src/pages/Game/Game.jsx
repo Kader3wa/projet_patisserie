@@ -32,10 +32,10 @@ const GamePage = () => {
     );
 
     useEffect(() => {
-        if (lancersRestants === 0) {
+        if (lancersRestants === 0 && patisseriesGagnees > 0) {
             setTriggerWin(true);
         }
-    }, [lancersRestants]);
+    }, [lancersRestants, patisseriesGagnees]);
 
     let content;
 
@@ -47,23 +47,21 @@ const GamePage = () => {
         return <ErrorComponent error={error} />
     }
 
-    if (triggerWin) {
-        if (patisseries) {
-            console.log(patisseries);
-            content = (
-                <>
-                    <Alert variant="success" className="text-center">
-                        <p>Bravo</p>
-                        <p>Vous avez gagné !</p>
-                        <ul className="list-unstyled">
-                            {patisseries.map((pastry) => (
-                                <li key={pastry.id}>{pastry.name}</li>
-                            ))}
-                        </ul>
-                    </Alert>
-                </>
-            );
-        }
+    if (triggerWin && patisseries) {
+        console.log(patisseries);
+        content = (
+            <>
+                <Alert variant="success" className="text-center">
+                    <p>Bravo</p>
+                    <p>Vous avez gagné !</p>
+                    <ul className="list-unstyled">
+                        {patisseries.map((pastry) => (
+                            <li key={pastry.id}>{pastry.name}</li>
+                        ))}
+                    </ul>
+                </Alert>
+            </>
+        );
     } else {
         content = (
             <Alert variant="danger" className="text-center">

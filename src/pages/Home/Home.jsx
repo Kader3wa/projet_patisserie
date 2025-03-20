@@ -63,7 +63,7 @@ const HomePage = () => {
                             <>
                                 <Button variant="primary" className="my-3" onClick={handlePlayGame}>Jouer</Button>
                                 <Card.Text>
-                                    Lots restants :
+                                    Lots restants
                                 </Card.Text>
                                 {content}
                             </>
