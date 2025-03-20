@@ -22,45 +22,43 @@ const AdminDashboardPage = () => {
         <Container className="my-5">
             <Card className="shadow">
                 <Card.Body>
-                    <Card.Title className="text-center mb-5">
-                        <h1>Administration</h1>
-                    </Card.Title>
-                    <Card.Text>
-                        <h2>Listing des patisseries</h2>
-                    </Card.Text>
+                    <h1 className="text-center mb-5">
+                        Administration
+                    </h1>
+                    <h2>Listing des patisseries</h2>
                     <Row className="my-5">
                         <Col md={12} className="text-center">
                             <Button variant="primary">Ajouter une patisserie</Button>
                         </Col>
                     </Row>
                     <Row>
-                        {pastries.map((pastrie) => (
-                            <Col md={12} key={pastrie.id}>
-                                <Table>
-                                    <thead>
-                                        <tr>
-                                            <th>Image</th>
-                                            <th>Nom</th>
-                                            <th>Quantités restantes</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="text-center">
-                                        <tr>
+                        <Col md={12}>
+                            <Table>
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Nom</th>
+                                        <th>Quantités restantes</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="text-center align-middle">
+                                    {pastries.map((pastry) => (
+                                        <tr key={pastry.id}>
                                             <td>
-                                                <Card.Img src="https://placehold.co/150x150" />
+                                                <img src="https://placehold.co/150x150" alt={pastry.name} />
                                             </td>
-                                            <td>{pastrie.name}</td>
-                                            <td>{pastrie.quantity}</td>
-                                            <td className="d-flex justify-content-around">
-                                                <Button variant="warning">Modifier</Button>
-                                                <Button variant="danger">Supprimer</Button>
+                                            <td>{pastry.name}</td>
+                                            <td>{pastry.quantity}</td>
+                                            <td>
+                                                <Button variant="info" className="mx-1">Modifier</Button>
+                                                <Button variant="danger" className="mx-1">Supprimer</Button>
                                             </td>
                                         </tr>
-                                    </tbody>
-                                </Table>
-                            </Col>
-                        ))}
+                                    ))}
+                                </tbody>
+                            </Table>
+                        </Col>
                     </Row>
                 </Card.Body>
             </Card>
