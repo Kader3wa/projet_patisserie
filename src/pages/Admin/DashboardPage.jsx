@@ -1,11 +1,12 @@
 import { Button, Card, Col, Container, Row, Table } from "react-bootstrap";
 import LoaderComponent from "../../components/Loader/Loader";
 import ErrorComponent from "../../components/Error/Error";
-import { useGetAllPastriesQuery } from "../../store/slice/apiCrudSlice";
+import { useDeletePastrieMutation, useGetAllPastriesQuery } from "../../store/slice/apiCrudSlice";
 
 const AdminDashboardPage = () => {
 
     const { data: pastries, isLoading, isError, error } = useGetAllPastriesQuery();
+    const [deletePastrie] = useDeletePastrieMutation();
 
     if (isLoading) {
         return <LoaderComponent />
@@ -15,7 +16,9 @@ const AdminDashboardPage = () => {
         return <ErrorComponent error={error} />
     }
 
-    console.log(pastries);
+    const handleDelete = async (id) => {
+        await deletePastrie(id);
+    }
 
     return (
         <Container className="my-5">
@@ -51,7 +54,7 @@ const AdminDashboardPage = () => {
                                             <td>{pastry.quantity}</td>
                                             <td>
                                                 <Button variant="info" className="mx-1">Modifier</Button>
-                                                <Button variant="danger" className="mx-1">Supprimer</Button>
+                                                <Button variant="danger" className="mx-1" onClick={handleDelete(pastry.id)}>Supprimer</Button>
                                             </td>
                                         </tr>
                                     ))}

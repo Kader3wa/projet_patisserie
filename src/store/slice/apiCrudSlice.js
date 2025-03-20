@@ -11,10 +11,18 @@ export const apiCrudSlice = createApi({
         getAllPastries: builder.query({
             query: () => `/pastries`,
             providesTags: ["Pastrie"],
-        })
+        }),
+        deletePastrie: builder.mutation({
+            query: (id) => ({
+                url: `/pastrie/${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ["Pastrie"],
+        }),
     }),
 });
 
 export const {
     useGetAllPastriesQuery,
+    useDeletePastrieMutation
 } = apiCrudSlice;
