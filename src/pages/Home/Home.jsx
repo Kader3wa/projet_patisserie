@@ -4,6 +4,7 @@ import { useGetPastriesQuery } from "../../store/slice/apiGameSlice";
 import LoaderComponent from "../../components/Loader/Loader";
 import ErrorComponent from "../../components/Error/Error";
 import { useNavigate } from "react-router";
+import "./Home.scss";
 
 const HomePage = () => {
 
@@ -35,7 +36,7 @@ const HomePage = () => {
                         (pastry.quantity > 0) &&
                         <Col key={pastry.id} xs={12} md={6} lg={4}>
                             <Card className="my-3 d-flex flex-column align-items-center shadow">
-                                <Card.Img variant="top" src={pastry.image} style={{ height: "300px" }} />
+                                <Card.Img variant="top" src={pastry.image} />
                                 <Card.Body>
                                     <Card.Title>{pastry.name} : {pastry.quantity}</Card.Title>
                                 </Card.Body>
