@@ -28,7 +28,6 @@ const HomePage = () => {
     }
 
     if (isSuccess) {
-        console.log(pastries)
         content =
             <>
                 <Row>{
