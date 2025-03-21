@@ -5,12 +5,12 @@ import { useState } from "react";
 const AddForm = ({ closeForm }) => {
 
     const [createPastrie] = useCreatePastrieMutation();
-    const [formData, setFormData] = useState({ name: "", quantity: 0, image: "" });
+    const [formData, setFormData] = useState({ name: "", quantity: 0, image: "", choice: true });
 
     const handleCreate = async (e) => {
         e.preventDefault();
         await createPastrie(formData);
-        setFormData({ name: "", quantity: 0, image: "" });
+        setFormData({ name: "", quantity: 0, image: "", choice: true });
         closeForm();
     };
 

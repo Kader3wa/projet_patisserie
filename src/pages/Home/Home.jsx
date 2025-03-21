@@ -18,6 +18,8 @@ const HomePage = () => {
 
     const navigate = useNavigate();
 
+    console.log(pastries);
+
     let content;
 
     if (isLoading) {
