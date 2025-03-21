@@ -3,14 +3,17 @@ import LoaderComponent from "../../components/Loader/Loader";
 import ErrorComponent from "../../components/Error/Error";
 import { useDeletePastrieMutation, useGetAllPastriesQuery } from "../../store/slice/apiCrudSlice";
 import { useState } from "react";
-import AddForm from "../../components/Pastry/AddForm";
 import "./Dashboard.scss";
+import HandlePastryForm from "../../components/Pastry/AddForm";
+import EditPastrieModal from "../../components/Pastry/EditModal";
 
 const AdminDashboardPage = () => {
 
     const { data: pastries, isLoading, isError, error } = useGetAllPastriesQuery();
     const [deletePastrie] = useDeletePastrieMutation();
     const [showAddForm, setShowAddForm] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [currentPastrie, setCurrentPastrie] = useState(null);
 
     if (isLoading) {
         return <LoaderComponent />
@@ -21,15 +24,20 @@ const AdminDashboardPage = () => {
     }
 
     const handleDelete = async ({ pastry }) => {
-        console.log(pastry);
         const confirmDelete = window.confirm(`Supprimer "${pastry.name}" ?`);
         if (confirmDelete) {
             await deletePastrie(pastry.id);
         }
     };
 
+    const handleEdit = ({ pastry }) => {
+        console.log(pastry);
+        setCurrentPastrie(pastry);
+        setShowEditModal(true);
+    }
+
     return (
-        <Container className="my-5">
+        <Container className="dashboard my-5">
             <Card className="shadow">
                 <Card.Body>
                     <h1 className="text-center mb-5">
@@ -42,7 +50,7 @@ const AdminDashboardPage = () => {
                         </Col>
                     </Row>
                     {showAddForm && (
-                        <AddForm closeForm={() => setShowAddForm(false)} />
+                        <HandlePastryForm closeForm={() => setShowAddForm(false)} />
                     )}
                     <Row>
                         <Col md={12}>
@@ -64,11 +72,18 @@ const AdminDashboardPage = () => {
                                             <td>{pastry.name}</td>
                                             <td>{pastry.quantity}</td>
                                             <td>
-                                                <Button variant="info" size="sm" className="me-1">Modifier</Button>
+                                                <Button variant="info" size="sm" className="me-1" onClick={() => handleEdit({ pastry })}>Modifier</Button>
                                                 <Button variant="danger" size="sm" className="me-1" onClick={() => handleDelete({ pastry })}>Supprimer</Button>
                                             </td>
                                         </tr>
                                     ))}
+                                    {showEditModal && currentPastrie && (
+                                        <EditPastrieModal
+                                            show={showEditModal}
+                                            onHide={() => setShowEditModal(false)}
+                                            pastry={currentPastrie}
+                                        />
+                                    )}
                                 </tbody>
                             </Table>
                         </Col>

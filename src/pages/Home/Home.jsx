@@ -53,7 +53,7 @@ const HomePage = () => {
 
     return (
         <>
-            <Container className="my-5">
+            <Container className="home my-5">
                 <Card className="shadow">
                     <Card.Body className="text-center">
                         <Card.Title>

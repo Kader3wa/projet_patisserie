@@ -16,7 +16,7 @@ const AddForm = ({ closeForm }) => {
 
     return (
         <div className="my-5">
-            <h3>Ajouter une patisserie</h3>
+            <h3>Ajout d'une patisserie</h3>
             <Form onSubmit={handleCreate}>
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Nom</Form.Label>
