@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { useUpdatePastrieMutation } from "../../store/slice/apiCrudSlice";
 
-const EditPastrieModal = ({ show, onHide, pastry }) => {
+const EditPastryModal = ({ show, onHide, pastry }) => {
     const [updatePastrie] = useUpdatePastrieMutation();
     const [formData, setFormData] = useState({
         name: "",
@@ -22,8 +22,8 @@ const EditPastrieModal = ({ show, onHide, pastry }) => {
         }
     }, [pastry]);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (ev) => {
+        ev.preventDefault();
         await updatePastrie({ id: pastry.id, ...formData });
         onHide();
     };
@@ -71,4 +71,4 @@ const EditPastrieModal = ({ show, onHide, pastry }) => {
     );
 };
 
-export default EditPastrieModal;
+export default EditPastryModal;

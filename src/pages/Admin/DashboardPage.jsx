@@ -5,7 +5,7 @@ import { useDeletePastrieMutation, useGetAllPastriesQuery } from "../../store/sl
 import { useState } from "react";
 import "./Dashboard.scss";
 import HandlePastryForm from "../../components/Pastry/AddForm";
-import EditPastrieModal from "../../components/Pastry/EditModal";
+import EditPastryModal from "../../components/Pastry/EditModal";
 
 const AdminDashboardPage = () => {
 
@@ -14,6 +14,7 @@ const AdminDashboardPage = () => {
     const [showAddForm, setShowAddForm] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [currentPastrie, setCurrentPastrie] = useState(null);
+    const [showToast, setShowToast] = useState(false);
 
     if (isLoading) {
         return <LoaderComponent />
@@ -31,66 +32,69 @@ const AdminDashboardPage = () => {
     };
 
     const handleEdit = ({ pastry }) => {
-        console.log(pastry);
         setCurrentPastrie(pastry);
         setShowEditModal(true);
     }
 
     return (
-        <Container className="dashboard my-5">
-            <Card className="shadow">
-                <Card.Body>
-                    <h1 className="text-center mb-5">
-                        Administration
-                    </h1>
-                    <h2>Listing des patisseries</h2>
-                    <Row className="my-5">
-                        <Col md={12} className="text-center">
-                            <Button variant="primary" onClick={() => setShowAddForm(true)}>Ajouter une patisserie</Button>
-                        </Col>
-                    </Row>
-                    {showAddForm && (
-                        <HandlePastryForm closeForm={() => setShowAddForm(false)} />
-                    )}
-                    <Row>
-                        <Col md={12}>
-                            <Table hover>
-                                <thead className="text-center">
-                                    <tr>
-                                        <th>Image</th>
-                                        <th>Nom</th>
-                                        <th>Quantités restantes</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="text-center align-middle">
-                                    {pastries.map((pastry) => (
-                                        <tr key={pastry.id}>
-                                            <td>
-                                                <img src={pastry.image} alt={pastry.name} style={{ width: '100px' }} />
-                                            </td>
-                                            <td>{pastry.name}</td>
-                                            <td>{pastry.quantity}</td>
-                                            <td>
-                                                <Button variant="info" size="sm" className="me-1" onClick={() => handleEdit({ pastry })}>Modifier</Button>
-                                                <Button variant="danger" size="sm" className="me-1" onClick={() => handleDelete({ pastry })}>Supprimer</Button>
-                                            </td>
+        <>
+            <Container className="dashboard my-5">
+                <Card className="shadow">
+                    <Card.Body>
+                        <h1 className="text-center mb-5">
+                            Administration
+                        </h1>
+                        <h2>Listing des patisseries</h2>
+                        <Row className="my-5">
+                            <Col md={12} className="text-center">
+                                <Button variant="primary" onClick={() => setShowAddForm(true)}>Ajouter une patisserie</Button>
+                            </Col>
+                        </Row>
+                        {showAddForm && (
+                            <HandlePastryForm closeForm={() => setShowAddForm(false)} />
+                        )}
+                        <Row>
+                            <Col md={12}>
+                                <Table hover>
+                                    <thead className="text-center">
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Nom</th>
+                                            <th>Quantités restantes</th>
+                                            <th>Actions</th>
                                         </tr>
-                                    ))}
-                                    {showEditModal && currentPastrie && (
-                                        <EditPastrieModal
-                                            show={showEditModal}
-                                            onHide={() => setShowEditModal(false)}
-                                            pastry={currentPastrie}
-                                        />
-                                    )}
-                                </tbody>
-                            </Table>
-                        </Col>
-                    </Row>
-                </Card.Body>
-            </Card>
-        </Container>
+                                    </thead>
+                                    <tbody className="text-center align-middle">
+                                        {pastries.map((pastry) => (
+                                            <tr key={pastry.id}>
+                                                <td>
+                                                    <img src={pastry.image} alt={pastry.name} style={{ width: '100px' }} />
+                                                </td>
+                                                <td>{pastry.name}</td>
+                                                <td>{pastry.quantity}</td>
+                                                <td>
+                                                    <Button variant="info" size="sm" className="me-1" onClick={() => handleEdit({ pastry })}>Modifier</Button>
+                                                    <Button variant="danger" size="sm" className="me-1" onClick={() => handleDelete({ pastry })}>Supprimer</Button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </Table>
+                            </Col>
+                        </Row>
+                    </Card.Body>
+                </Card>
+            </Container>
+            {
+                showEditModal && currentPastrie && (
+                    <EditPastrieModal
+                        show={showEditModal}
+                        onHide={() => setShowEditModal(false)}
+                        pastry={currentPastrie}
+                    />
+                )
+            }
+        </>
     );
 }
 
