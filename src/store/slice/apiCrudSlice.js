@@ -26,15 +26,7 @@ export const apiCrudSlice = createApi({
                 body: data,
             }),
             invalidatesTags: ["Pastrie"],
-        }),
-        updatePastrie: builder.mutation({
-            query: ({ id, ...data }) => ({
-                url: `/pastrie/${id}`,
-                method: "PUT",
-                body: data,
-            }),
-            invalidatesTags: ["Pastrie"],
-        }),
+        })
     }),
 });
 
@@ -42,5 +34,5 @@ export const {
     useGetAllPastriesQuery,
     useDeletePastrieMutation,
     useCreatePastrieMutation,
-    useUpdatePastrieMutation
+    useUpdatePastrieMutation,
 } = apiCrudSlice;

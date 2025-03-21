@@ -5,16 +5,22 @@ import { useDeletePastrieMutation, useGetAllPastriesQuery } from "../../store/sl
 import { useState } from "react";
 import "./Dashboard.scss";
 import HandlePastryForm from "../../components/Pastry/AddForm";
-import EditPastryModal from "../../components/Pastry/EditModal";
 
 const AdminDashboardPage = () => {
 
-    const { data: pastries, isLoading, isError, error } = useGetAllPastriesQuery();
+    const { data: pastries = [], isLoading, isError, error } = useGetAllPastriesQuery(undefined, {
+        selectFromResult: ({ data, isLoading, isError, error }) => ({
+            data,
+            isLoading,
+            isError,
+            error,
+        }),
+    });
     const [deletePastrie] = useDeletePastrieMutation();
     const [showAddForm, setShowAddForm] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [currentPastrie, setCurrentPastrie] = useState(null);
-    const [showToast, setShowToast] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
 
     if (isLoading) {
         return <LoaderComponent />
@@ -36,6 +42,10 @@ const AdminDashboardPage = () => {
         setShowEditModal(true);
     }
 
+    const filterPastries = pastries.filter((p) =>
+        p.name.toLowerCase().includes(searchTerm.toLowerCase()) && searchTerm.length >= 3
+    );
+
     return (
         <>
             <Container className="dashboard my-5">
@@ -45,6 +55,20 @@ const AdminDashboardPage = () => {
                             Administration
                         </h1>
                         <h2>Listing des patisseries</h2>
+                        <Row className="my-5">
+                            <Col md={4} className="mx-auto">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Rechercher une pâtisserie (min. 3 lettres)..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                />
+                                {searchTerm.length > 0 && searchTerm.length < 3 && (
+                                    <div className="text-muted small mt-1">Saisissez au moins 3 caractères</div>
+                                )}
+                            </Col>
+                        </Row>
                         <Row className="my-5">
                             <Col md={12} className="text-center">
                                 <Button variant="primary" onClick={() => setShowAddForm(true)}>Ajouter une patisserie</Button>
@@ -65,7 +89,7 @@ const AdminDashboardPage = () => {
                                         </tr>
                                     </thead>
                                     <tbody className="text-center align-middle">
-                                        {pastries.map((pastry) => (
+                                        {(searchTerm.length >= 3 ? filterPastries : pastries).map((pastry) => (
                                             <tr key={pastry.id}>
                                                 <td>
                                                     <img src={pastry.image} alt={pastry.name} style={{ width: '100px' }} />

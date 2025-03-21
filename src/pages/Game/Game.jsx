@@ -33,6 +33,7 @@ const GamePage = () => {
 
     useEffect(() => {
         if (lancersRestants === 0 && patisseriesGagnees > 0) {
+            console.log(patisseriesGagnees);
             setTriggerWin(true);
         }
     }, [lancersRestants, patisseriesGagnees]);

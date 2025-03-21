@@ -15,7 +15,7 @@ const NavbarComponent = () => {
     return (
         <Navbar expand="lg" className="mb-5 bg-1">
             <Container>
-                <Navbar.Toggle aria-controls="main-navbar" />
+                <Navbar.Toggle aria-controls="main-navbar" className="bg-light" />
                 <Navbar.Collapse id="main-navbar" className="flex-column justify-content-center">
                     <h1 className="text-white">La patisserie 3WA</h1>
                     <Nav>
